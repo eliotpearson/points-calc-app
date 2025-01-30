@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   cell: { flex: 1, textAlign: 'center', padding: 8, borderColor: '#ddd' },
 
   // the top of the page that will display the selected currency (USD)
-  selectedCurrency: { flex: 1, flexDirection: 'row', padding: 20,textAlign: 'center', backgroundColor: '#FAD2DE'},
+  selectedCurrency: { flex: 1, flexDirection: 'row', padding: 20, alignItems: 'center', textAlign: 'center', backgroundColor: '#FAD2DE'},
 
 });
 
