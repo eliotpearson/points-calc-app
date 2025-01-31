@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
+// Points Calc App
+// development started: 01/28/25
+// Eliot Pearson Jr
 
 const App: React.FC = () => {
   const [multiplier, setMultiplier] = useState('1'); // Stores numeric input
@@ -9,7 +12,7 @@ const App: React.FC = () => {
   // displayedPointValue is what the table sees, it will be modified whenever the input is changed
   const [data, setData] = useState([
     { id: '1', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
-    { id: '2', name: 'MyPoints', basePointValue: 20, displayedPointValue: 20},
+    { id: '2', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
     { id: '3', name: 'Ibotta', basePointValue: 100, displayedPointValue: 100},
   ]);
 
@@ -27,15 +30,23 @@ const App: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {/* user input - the user will give some dollar amount to convert into rewards points */}
-      <Text style={styles.label}>Enter multiplier:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter a number"
-        keyboardType="numeric"
-        value={multiplier}
-        onChangeText={applyMultiplier}
+
+      <Text style={styles.label}>Calculate Rewards</Text>
+
+      <View style={styles.barForInput}>
+
+        {/* user input - the user will give some dollar amount to convert into rewards points */}
+        <TextInput
+          style={styles.input}
+          placeholder="Enter a number..."
+          keyboardType="numeric"
+          value={multiplier}
+          onChangeText={applyMultiplier}
       />
+
+      <Text style={styles.usdIcon}>$USD</Text>
+      </View>
+      
 
       {/* table headers */}
       <View style={[styles.row, styles.header]}>
@@ -58,20 +69,45 @@ const App: React.FC = () => {
   );
 };
 
+// contains all of the styling for the visual elements
 const styles = StyleSheet.create({
+
   container: { flex: 1, padding: 16, backgroundColor: '#fff' },
   label: { fontSize: 16, marginBottom: 8 },
   input: {
     height: 40,
+    width: 250,
     borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 5,
     marginBottom: 10,
+    marginRight: 20,
   },
   row: { flexDirection: 'row', padding: 10, borderBottomWidth: 1, borderColor: '#ccc' },
   header: { backgroundColor: '#f1f8ff', fontWeight: 'bold' },
   cell: { flex: 1, textAlign: 'center' },
+
+  usdIcon: {
+    height: 40,
+    width: 250,
+    borderColor: '#BEE4FF',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+    fontSize: 30,
+    textAlign: 'center',
+    backgroundColor: '#BEE4FF',
+    color: '#5A94FF',
+  },
+
+  barForInput: {
+    flexDirection: 'row', 
+    padding: 10,
+  },
+
+
 });
 
 export default App;
