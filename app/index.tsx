@@ -3,13 +3,15 @@ import { View, Text, FlatList, TextInput, StyleSheet } from 'react-native';
 
 const App: React.FC = () => {
 
+  // the text field for user input
+  const [inputText, setText] = useState('');
+
   // table of currency data
   const [data, setData] = useState([
     { id: '1', name: 'Swagbucks', conversion: '100'},
     { id: '2', name: 'MyPoints', conversion: '100'},
     { id: '3', name: 'Ibotta', conversion: '100'},
   ]);
-
 
 
   // Function to update table data
@@ -23,12 +25,19 @@ const App: React.FC = () => {
 
   return (
     <View style={styles.container}>
+
+      {/* the user will enter a numerical value, changing the table output */}
       <View style={styles.selectedCurrency}>
-        <TextInput 
-          value={'Enter value here'}
+        <TextInput
+          // add styles here
+          placeholder="Type a number..."
+          value={inputText}
+          keyboardType="numeric"
+          onChangeText={setText}  // Updates when user enters a new value
           />
         <Text>$USD</Text>
       </View>
+
       {/* Table Header */}
       <View style={[styles.row, styles.header]}>
         <Text style={styles.cell}>Reward System</Text>
