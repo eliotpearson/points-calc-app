@@ -13,21 +13,21 @@ const App: React.FC = () => {
     { id: '3', name: 'Ibotta', basePointValue: 100, displayedPointValue: 100},
   ]);
 
-  // Function to apply multiplier
+  // function to apply multiplier
   const applyMultiplier = (value: string) => {
-    const factor = parseFloat(value) || 1; // Convert input to number, default to 1 if empty
+    const factor = parseFloat(value) || 1; // convert input to number, default to 1 if empty
     setMultiplier(value);
     setData((prevData) =>
       prevData.map((row) => ({
         ...row,
-        displayedPointValue: Math.round(row.basePointValue * factor), // Multiply basePointValue by factor
+        displayedPointValue: Math.round(row.basePointValue * factor), // multiply basePointValue by factor
       }))
     );
   };
 
   return (
     <View style={styles.container}>
-      {/* Numeric Input */}
+      {/* user input - the user will give some dollar amount to convert into rewards points */}
       <Text style={styles.label}>Enter multiplier:</Text>
       <TextInput
         style={styles.input}
@@ -37,13 +37,13 @@ const App: React.FC = () => {
         onChangeText={applyMultiplier}
       />
 
-      {/* Table Header */}
+      {/* table headers */}
       <View style={[styles.row, styles.header]}>
         <Text style={styles.cell}>Name</Text>
         <Text style={styles.cell}>Number of Rewards Points</Text>
       </View>
 
-      {/* Table Body */}
+      {/* table body - this will be updated by user input, the names will remain constant */}
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
