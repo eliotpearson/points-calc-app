@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [data, setData] = useState([
     { id: '1', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
     { id: '2', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
-    { id: '3', name: 'Ibotta', basePointValue: 100, displayedPointValue: 100},
+    { id: '3', name: 'Fetch', basePointValue: 1000, displayedPointValue: 1000},
   ]);
 
   // function to apply multiplier
