@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Stack } from "expo-router";
 import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
 // Points Calc App
 // development started: 01/28/25
@@ -16,6 +17,7 @@ const App: React.FC = () => {
     { id: '2', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
     { id: '3', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
     { id: '1', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
+
   ]);
 
   // function to apply multiplier
@@ -26,13 +28,18 @@ const App: React.FC = () => {
       prevData.map((row) => ({
         ...row,
         displayedPointValue: Math.round(row.basePointValue * factor), // multiply basePointValue by factor
+
       }))
     );
   };
 
   // displays the visual and UI elements
   return (
+    
     <View style={styles.container}>
+
+      {/* changes the title of the default header */}
+      <Stack.Screen options={{ title: 'Points Calculator'}}/>
 
       <Text style={styles.label}>Calculate Rewards</Text>
 
@@ -45,16 +52,18 @@ const App: React.FC = () => {
           keyboardType="numeric"
           value={multiplier}
           onChangeText={applyMultiplier}
-      />
 
-      <Text style={styles.usdIcon}>$USD</Text>
+        />
+
+        <Text style={styles.usdIcon}>$USD</Text>
+
       </View>
-      
 
       {/* table headers */}
       <View style={[styles.row, styles.header]}>
         <Text style={styles.cell}>Name</Text>
         <Text style={styles.cell}>Number of Rewards Points</Text>
+
       </View>
 
       {/* table body - this will be updated by user input, the names will remain constant */}
@@ -66,6 +75,7 @@ const App: React.FC = () => {
             <Text style={styles.cell}>{item.name}</Text>
             <Text style={styles.cell}>{item.displayedPointValue}</Text>
           </View>
+
         )}
       />
     </View>
@@ -79,12 +89,14 @@ const styles = StyleSheet.create({
   container: { flex: 1,
     padding: 16,
     backgroundColor: '#fff',
+
   },
 
   // label for the app
   label: {
     fontSize: 16,
     marginBottom: 8,
+
   },
 
   // user input text box
@@ -97,6 +109,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,    // rounds the edges of the box
     marginBottom: 10,
     marginRight: 30,
+
   },
 
   // each row of the data table
@@ -105,18 +118,21 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderColor: '#ccc',
+
   },
 
   // the header rows of the data table
   header: {
     backgroundColor: '#f1f8ff',
     fontWeight: 'bold',
+
   },
 
   // eahc cell of the data table
   cell: { 
     flex: 1,
     textAlign: 'center',
+
   },
 
   // the icon at the top of screen displaying the input currency
@@ -132,15 +148,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#BEE4FF',
     color: '#5A94FF',
     marginBottom: 10,
+
   },
 
   // the container holding the input elements at the top
   barForInput: {
     flexDirection: 'row', 
     padding: 10,
+
   },
-
-
 });
 
 export default App;
