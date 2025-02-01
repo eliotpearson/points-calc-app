@@ -30,6 +30,7 @@ const App: React.FC = () => {
     );
   };
 
+  // displays the visual and UI elements
   return (
     <View style={styles.container}>
 
@@ -88,14 +89,14 @@ const styles = StyleSheet.create({
 
   // user input text box
   input: {
+    width: 180,
     height: 40,
-    width: 250,
     borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
-    borderRadius: 5,
+    borderRadius: 10,    // rounds the edges of the box
     marginBottom: 10,
-    marginRight: 20,
+    marginRight: 30,
   },
 
   // each row of the data table
@@ -120,17 +121,17 @@ const styles = StyleSheet.create({
 
   // the icon at the top of screen displaying the input currency
   usdIcon: {
+    width: 120,
     height: 40,
-    width: 250,
     borderColor: '#BEE4FF',
     borderWidth: 1,
+    borderRadius: 10,
     paddingHorizontal: 10,
-    borderRadius: 5,
-    marginBottom: 10,
     fontSize: 30,
     textAlign: 'center',
     backgroundColor: '#BEE4FF',
     color: '#5A94FF',
+    marginBottom: 10,
   },
 
   // the container holding the input elements at the top
