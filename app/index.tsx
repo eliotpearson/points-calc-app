@@ -12,11 +12,11 @@ const App: React.FC = () => {
   // each basePointValue is equiavlent to 1 USD, and will be used to scale table output
   // displayedPointValue is what the table sees, it will be modified whenever the input is changed
   const [data, setData] = useState([
-    { id: '3', name: 'Coin Out', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '3', name: 'Fetch', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '2', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
-    { id: '3', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '1', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
+    { id: '1', name: 'Coin Out', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '2', name: 'Fetch', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '3', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
+    { id: '4', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '5', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
 
   ]);
 
