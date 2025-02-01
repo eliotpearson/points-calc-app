@@ -11,9 +11,11 @@ const App: React.FC = () => {
   // each basePointValue is equiavlent to 1 USD, and will be used to scale table output
   // displayedPointValue is what the table sees, it will be modified whenever the input is changed
   const [data, setData] = useState([
-    { id: '1', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
-    { id: '2', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
+    { id: '3', name: 'Coin Out', basePointValue: 1000, displayedPointValue: 1000},
     { id: '3', name: 'Fetch', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '2', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
+    { id: '3', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '1', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
   ]);
 
   // function to apply multiplier
@@ -72,8 +74,19 @@ const App: React.FC = () => {
 // contains all of the styling for the visual elements
 const styles = StyleSheet.create({
 
-  container: { flex: 1, padding: 16, backgroundColor: '#fff' },
-  label: { fontSize: 16, marginBottom: 8 },
+  // the entire page
+  container: { flex: 1,
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+
+  // label for the app
+  label: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
+
+  // user input text box
   input: {
     height: 40,
     width: 250,
@@ -84,10 +97,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginRight: 20,
   },
-  row: { flexDirection: 'row', padding: 10, borderBottomWidth: 1, borderColor: '#ccc' },
-  header: { backgroundColor: '#f1f8ff', fontWeight: 'bold' },
-  cell: { flex: 1, textAlign: 'center' },
 
+  // each row of the data table
+  row: {
+    flexDirection: 'row',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
+
+  // the header rows of the data table
+  header: {
+    backgroundColor: '#f1f8ff',
+    fontWeight: 'bold',
+  },
+
+  // eahc cell of the data table
+  cell: { 
+    flex: 1,
+    textAlign: 'center',
+  },
+
+  // the icon at the top of screen displaying the input currency
   usdIcon: {
     height: 40,
     width: 250,
@@ -102,6 +133,7 @@ const styles = StyleSheet.create({
     color: '#5A94FF',
   },
 
+  // the container holding the input elements at the top
   barForInput: {
     flexDirection: 'row', 
     padding: 10,
