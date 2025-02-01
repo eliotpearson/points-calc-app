@@ -74,7 +74,9 @@ const App: React.FC = () => {
         renderItem={({ item }) => (
           <View style={styles.row}>
             <Text style={styles.cell}>{item.name}</Text>
-            <Text style={styles.cell}>{item.displayedPointValue}</Text>
+            
+            {/* toLocaleString() formats applicable numbers with commas */}
+            <Text style={styles.cell}>{item.displayedPointValue.toLocaleString()}</Text>
           </View>
 
         )}
