@@ -40,7 +40,7 @@ const App: React.FC = () => {
     <View style={styles.container}>
 
       {/* changes the title of the default header */}
-      <Stack.Screen options={{ title: 'Points Calculator'}}/>
+      <Stack.Screen options={{ title: 'Points Calculator', headerTintColor: '#fff', headerStyle: {backgroundColor: '#3EBF9A'}}}/>
 
       <Text style={styles.label}>Calculate Rewards</Text>
 
@@ -74,7 +74,7 @@ const App: React.FC = () => {
         renderItem={({ item }) => (
           <View style={styles.row}>
             <Text style={styles.cell}>{item.name}</Text>
-            
+
             {/* toLocaleString() formats applicable numbers with commas */}
             <Text style={styles.cell}>{item.displayedPointValue.toLocaleString()}</Text>
           </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   // the entire page
   container: { flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#FAFAFA',
 
   },
 
@@ -99,41 +99,58 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 8,
-
+    
   },
 
   // user input text box
   input: {
     width: 180,
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#E6E5E5',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 10,    // rounds the edges of the box
     marginBottom: 10,
     marginRight: 30,
+    backgroundColor: '#FAFAFA',
+    
 
   },
 
   // each row of the data table
   row: {
     flexDirection: 'row',
-    padding: 10,
+    padding: 25,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#ccc',
+    borderRadius: 10,
+    marginBottom: 20,
+
+    // drop shadow for elements
+    shadowColor: '#000',
+    shadowOpacity: 0.10,
+    shadowOffset: { width: 0, height: 1,},
+    shadowRadius: 2,
+    elevation: 5,
 
   },
 
   // the header rows of the data table
   header: {
-    backgroundColor: '#f1f8ff',
+    backgroundColor: '#C8FDE2',
+    borderColor: '#C8FDE2',
     fontWeight: 'bold',
+    
 
   },
 
-  // eahc cell of the data table
+  // each cell of the data table
   cell: { 
     flex: 1,
+    fontSize: 16,
     textAlign: 'center',
 
   },
@@ -142,23 +159,29 @@ const styles = StyleSheet.create({
   usdIcon: {
     width: 120,
     height: 40,
-    borderColor: '#BEE4FF',
+    borderColor: '#C4F8CB',
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,
     fontSize: 30,
     textAlign: 'center',
-    backgroundColor: '#BEE4FF',
-    color: '#5A94FF',
+    backgroundColor: '#C4F8CB',
+    color: '#40C9A2',             // text color
     marginBottom: 10,
 
+    // drop shadow for element
+    shadowColor: '#000',
+    shadowOpacity: 0.20,
+    shadowOffset: { width: 0, height: 1.5,},
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 
   // the container holding the input elements at the top
   barForInput: {
     flexDirection: 'row', 
     padding: 10,
-
+    
   },
 });
 
