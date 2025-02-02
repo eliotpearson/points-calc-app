@@ -62,7 +62,7 @@ const App: React.FC = () => {
 
       {/* table headers */}
       <View style={[styles.row, styles.header]}>
-        <Text style={styles.cell}>Name</Text>
+        <Text style={styles.cell}>Rewards System</Text>
         <Text style={styles.cell}>Number of Rewards Points</Text>
 
       </View>
@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
   barForInput: {
     flexDirection: 'row', 
     padding: 10,
+    marginBottom: 20,
     
   },
 });
