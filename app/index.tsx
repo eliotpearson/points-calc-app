@@ -74,7 +74,7 @@ const App: React.FC = () => {
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <View style={[styles.row, {backgroundColor: rewardsColors[index % rewardsColors.length]}, {borderColor: rewardsColors[index % rewardsColors.length]} ]}>
+          <View style={[styles.row,  {backgroundColor: rewardsColors[index % rewardsColors.length]}, {borderColor: rewardsColors[index % rewardsColors.length]} ]}>
             <Text style={styles.cell}>{item.name}</Text>
 
             {/* toLocaleString() formats applicable numbers with commas */}
@@ -128,8 +128,10 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderLeftWidth: 1,
     borderBottomWidth: 1,
+    borderTopWidth: 1,
     borderRadius: 20,
     marginBottom: 20,
+    //backgroundColor: '#fff',
 
     // drop shadow for elements - 'shadow' prop is depreciated
     shadowColor: '#000',
