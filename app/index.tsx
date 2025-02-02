@@ -18,7 +18,7 @@ const App: React.FC = () => {
     { id: '4', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
     { id: '5', name: 'Shopkick', basePointValue: 250, displayedPointValue: 250},
     { id: '6', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
-
+    { id: '7', name: 'Microsoft Rewards', basePointValue: 1000, displayedPointValue: 1000},
   ]);
 
   // function to apply multiplier
