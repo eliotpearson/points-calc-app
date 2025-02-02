@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Stack } from "expo-router";
-import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
+import { Audio } from 'expo-av';
+
 // Points Calc App
 // development started: 01/28/25
 // Eliot Pearson Jr
 
 const App: React.FC = () => {
   const [multiplier, setMultiplier] = useState('1'); // Stores numeric input
+  const [musicPlaying, setMusicPlaying] = useState(true);
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   // table of different rewards systems
   // each basePointValue is equiavlent to 1 USD, and will be used to scale table output
@@ -36,6 +40,40 @@ const App: React.FC = () => {
     );
   };
 
+  // load and play background music
+  useEffect(() => {
+    const loadMusic = async () => {
+      const { sound } = await Audio.Sound.createAsync(
+        require('../assets/webcorporate.mp3'), // located in the assets folder
+        { isLooping: true, volume: 0.2}
+      );
+      setSound(sound);
+      await sound.playAsync();
+    };
+
+    loadMusic();
+
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, []);
+
+  // toggle music on/off, will be called upon button press
+  const toggleMusic = async () => {
+    if (sound) {
+      if (musicPlaying) {
+        await sound.pauseAsync();
+      } else {
+        await sound.playAsync();
+      }
+      setMusicPlaying(!musicPlaying);
+    }
+  };
+
+
+
   // displays the visual and UI elements
   return (
     
@@ -45,6 +83,8 @@ const App: React.FC = () => {
       <Stack.Screen options={{ title: 'Points Calculator', headerTintColor: '#fff', headerStyle: {backgroundColor: '#3EBF9A'}}}/>
 
       <Text style={styles.label}>Calculate Rewards</Text>
+
+      
 
       <View style={styles.barForInput}>
 
@@ -58,9 +98,21 @@ const App: React.FC = () => {
 
         />
 
-        <Text style={styles.usdIcon}>$USD</Text>
+        <TouchableOpacity style={styles.usdIcon}>
+          <Text style={styles.usdIconText}>$USD</Text>
+        </TouchableOpacity>
+          
+
+        {/* button to toggle the background music */}
+        <TouchableOpacity onPress={toggleMusic} style={styles.musicButton}>
+          <Text style={styles.musicButtonText}>
+            {musicPlaying ? 'Pause Music' : 'Play Music'}
+        </Text>
+      </TouchableOpacity>
 
       </View>
+
+      
 
       {/* table headers */}
       <View style={[styles.row, styles.header]}>
@@ -109,14 +161,14 @@ const styles = StyleSheet.create({
 
   // user input text box
   input: {
-    width: 180,
+    width: 80,
     height: 40,
     borderColor: '#E6E5E5',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 10,    // rounds the edges of the box
     marginBottom: 10,
-    marginRight: 30,
+    marginRight: 15,
     backgroundColor: '#FAFAFA',
 
   },
@@ -131,7 +183,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderRadius: 20,
     marginBottom: 20,
-    //backgroundColor: '#fff',
 
     // drop shadow for elements - 'shadow' prop is depreciated
     shadowColor: '#000',
@@ -161,18 +212,13 @@ const styles = StyleSheet.create({
 
   // the icon at the top of screen displaying the input currency
   usdIcon: {
-    width: 120,
-    height: 40,
-    borderColor: '#C4F8CB',
-    borderWidth: 1,
+    width: 110,
+    height: 39,
     borderRadius: 10,
-    paddingHorizontal: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: '#C4F8CB',
-    color: '#40C9A2',             // text color
+    backgroundColor: '#3EBF9A',
     marginBottom: 10,
+    marginRight: 15,
+    
 
     // drop shadow for element
     shadowColor: '#000',
@@ -182,12 +228,49 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
+  usdIconText: { 
+    flex: 1,
+    paddingTop: 10,
+    fontSize: 16, 
+    color: '#fff', 
+    fontWeight: 'bold',
+    textAlign: 'center',
+    
+  },
+
   // the container holding the input elements at the top
   barForInput: {
+    justifyContent: 'flex-start',
     flexDirection: 'row', 
     padding: 10,
     marginBottom: 20,
     
+  },
+
+  musicButton: {
+    backgroundColor: '#3EBF9A',
+    height: 39,
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+    // Music track: Web Corporate by Aylex
+    // Source: https://freetouse.com/music
+    // Copyright Free Music (Free Download)
+
+    // drop shadow for element
+    shadowColor: '#000',
+    shadowOpacity: 0.20,
+    shadowOffset: { width: 0, height: 1.5,},
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+
+  musicButtonText: { 
+    flex: 1,
+    fontSize: 16, 
+    color: '#fff', 
+    fontWeight: 'bold',
+  
   },
 
 });
