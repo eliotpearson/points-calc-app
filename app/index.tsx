@@ -14,11 +14,13 @@ const App: React.FC = () => {
   const [data, setData] = useState([
     { id: '1', name: 'Coin Out', basePointValue: 1000, displayedPointValue: 1000},
     { id: '2', name: 'Fetch', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '3', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
-    { id: '4', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '5', name: 'Shopkick', basePointValue: 250, displayedPointValue: 250},
-    { id: '6', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
-    { id: '7', name: 'Microsoft Rewards', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '3', name: 'Microsoft Rewards', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '4', name: 'Mistplay', basePointValue: 3000, displayedPointValue: 3000},
+    { id: '5', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
+    { id: '6', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
+    { id: '7', name: 'Shopkick', basePointValue: 250, displayedPointValue: 250},
+    { id: '8', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
+    
   ]);
 
   // function to apply multiplier
