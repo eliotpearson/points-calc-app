@@ -65,7 +65,7 @@ const App: React.FC = () => {
       {/* table headers */}
       <View style={[styles.row, styles.header]}>
         <Text style={styles.cell}>Rewards System</Text>
-        <Text style={styles.cell}>Number of Rewards Points</Text>
+        <Text style={styles.cell}>Number of Points</Text>
 
       </View>
 
@@ -73,8 +73,8 @@ const App: React.FC = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.row}>
+        renderItem={({ item, index }) => (
+          <View style={[styles.row, {backgroundColor: rewardsColors[index % rewardsColors.length]}, {borderColor: rewardsColors[index % rewardsColors.length]} ]}>
             <Text style={styles.cell}>{item.name}</Text>
 
             {/* toLocaleString() formats applicable numbers with commas */}
@@ -86,6 +86,9 @@ const App: React.FC = () => {
     </View>
   );
 };
+
+// the colors of each reward system in alphabetized order
+const rewardsColors = ['#20A6F5', '#FCAD27', '#1EC5F4', '#34F3D5', '#EE794F', '#A484E1', '#199BD8', '#6DB9D6'];
 
 // contains all of the styling for the visual elements
 const styles = StyleSheet.create({
@@ -115,7 +118,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginRight: 30,
     backgroundColor: '#FAFAFA',
-    
 
   },
 
@@ -123,18 +125,16 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     padding: 25,
-    borderColor: '#fff',
-    backgroundColor: '#fff',
     borderRightWidth: 1,
     borderLeftWidth: 1,
     borderBottomWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
     marginBottom: 20,
 
-    // drop shadow for elements
+    // drop shadow for elements - 'shadow' prop is depreciated
     shadowColor: '#000',
-    shadowOpacity: 0.10,
-    shadowOffset: { width: 0, height: 1,},
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2,},
     shadowRadius: 2,
     elevation: 5,
 
@@ -142,18 +142,18 @@ const styles = StyleSheet.create({
 
   // the header rows of the data table
   header: {
-    backgroundColor: '#C8FDE2',
-    borderColor: '#C8FDE2',
+    backgroundColor: '#fff',
+    borderColor: '#fff',
     fontWeight: 'bold',
-    
 
   },
 
   // each cell of the data table
   cell: { 
     flex: 1,
-    fontSize: 16,
+    fontSize: 17,
     textAlign: 'center',
+    color: '#343434',
 
   },
 
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
     fontSize: 30,
+    fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#C4F8CB',
     color: '#40C9A2',             // text color
@@ -186,6 +187,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     
   },
+
 });
 
 export default App;
