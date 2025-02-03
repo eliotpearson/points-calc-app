@@ -22,8 +22,8 @@ const App: React.FC = () => {
     { id: '4', name: 'Mistplay', basePointValue: 3000, displayedPointValue: 3000},
     { id: '5', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
     { id: '6', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '7', name: 'Shopkick', basePointValue: 250, displayedPointValue: 250},
-    { id: '8', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
+    { id: '9', name: 'Shopkick', basePointValue: 250, displayedPointValue: 250},
+    { id: '10', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
     
   ]);
 
@@ -107,6 +107,7 @@ const App: React.FC = () => {
         <TouchableOpacity onPress={toggleMusic} style={styles.musicButton}>
           <Text style={styles.musicButtonText}>
             {musicPlaying ? 'Pause Music' : 'Play Music'}
+            
         </Text>
       </TouchableOpacity>
 
