@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Stack } from "expo-router";
 import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import { Audio } from 'expo-av';
-
+import * as SplashScreen from 'expo-splash-screen';
 // Points Calc App
 // development started: 01/28/25
 // Eliot Pearson Jr
 
+SplashScreen.preventAutoHideAsync();
+
 const App: React.FC = () => {
-  const [multiplier, setMultiplier] = useState('1'); // Stores numeric input
-  const [musicPlaying, setMusicPlaying] = useState(true);
+  const [appLoaded, setAppLoaded] = useState(false);        // splash screen
+  const [multiplier, setMultiplier] = useState('1');        // stores numeric input
+  const [musicPlaying, setMusicPlaying] = useState(true);   // background music
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   // table of different rewards systems
@@ -39,6 +42,17 @@ const App: React.FC = () => {
       }))
     );
   };
+
+  // load assets (simulate loading time)
+  useEffect(() => {
+    const loadApp = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // load screen for 2 seconds
+      setAppLoaded(true);
+      SplashScreen.hideAsync(); // hide splash screen after app is loaded
+    };
+
+    loadApp();
+  }, []);
 
   // load and play background music
   useEffect(() => {
@@ -72,6 +86,9 @@ const App: React.FC = () => {
     }
   };
 
+  if (!appLoaded) {
+    return null;      // prevent UI from showing before splash screen hides
+  }
 
 
   // displays the visual and UI elements
@@ -107,7 +124,7 @@ const App: React.FC = () => {
         <TouchableOpacity onPress={toggleMusic} style={styles.musicButton}>
           <Text style={styles.musicButtonText}>
             {musicPlaying ? 'Pause Music' : 'Play Music'}
-            
+
         </Text>
       </TouchableOpacity>
 
