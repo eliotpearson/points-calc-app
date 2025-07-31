@@ -26,4 +26,4 @@ This is an [Expo](https://expo.dev) app.
 
 Build will be available on expo online.
 
-# points-calc-app
+Checkout RSYNC.md to push changes to production.
