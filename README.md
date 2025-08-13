@@ -18,28 +18,12 @@ This is an [Expo](https://expo.dev) app.
     npx expo start
    ```
 
-3: Build the Android App
+3: Build the Progressive Web App
 
-   Note: You may need eas-cli installed `npm install -g eas-cli`
-
-A. **Log in to Expo**:
-   If you’re not already logged in, run:
    ```bash
-   npx expo login
-   ```
-   Enter your Expo account credentials.
-
-B. **Configure the Build**:
-   Run the following command to configure the Android app (run once):
-   ```bash
-   npx eas build:configure
-   ```
-C. **Run the Build**:
-   Run the following command to build the Android app (run once):
-   ```bash
-   npx eas build -p android
+   npx expo export -p web
    ```
 
 Build will be available on expo online.
 
-# points-calc-app
+Checkout RSYNC.md to push changes to production.
