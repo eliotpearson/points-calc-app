@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import { Audio } from 'expo-av';
 import * as SplashScreen from 'expo-splash-screen';
+import { REWARDS_DATA, REWARDS_COLORS, calculatePoints } from '../utils/rewards';
 // Points Calc App
 // development started: 01/28/25
 // Eliot Pearson Jr
@@ -18,29 +19,12 @@ const App: React.FC = () => {
   // table of different rewards systems
   // each basePointValue is equiavlent to 1 USD, and will be used to scale table output
   // displayedPointValue is what the table sees, it will be modified whenever the input is changed
-  const [data, setData] = useState([
-    { id: '1', name: 'Coin Out', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '2', name: 'Fetch', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '3', name: 'Microsoft Rewards', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '4', name: 'Mistplay', basePointValue: 3000, displayedPointValue: 3000},
-    { id: '5', name: 'MyPoints', basePointValue: 160, displayedPointValue: 160},
-    { id: '6', name: 'Pogo', basePointValue: 1000, displayedPointValue: 1000},
-    { id: '9', name: 'Shopkick', basePointValue: 250, displayedPointValue: 250},
-    { id: '10', name: 'Swagbucks', basePointValue: 100, displayedPointValue: 100},
-    
-  ]);
+  const [data, setData] = useState(REWARDS_DATA);
 
   // function to apply multiplier
   const applyMultiplier = (value: string) => {
-    const factor = parseFloat(value) || 1; // convert input to number, default to 1 if empty
     setMultiplier(value);
-    setData((prevData) =>
-      prevData.map((row) => ({
-        ...row,
-        displayedPointValue: Math.round(row.basePointValue * factor), // multiply basePointValue by factor
-
-      }))
-    );
+    setData((prevData) => calculatePoints(prevData, value));
   };
 
   // load assets (simulate loading time)
@@ -144,7 +128,7 @@ const App: React.FC = () => {
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <View style={[styles.row,  {backgroundColor: rewardsColors[index % rewardsColors.length]}, {borderColor: rewardsColors[index % rewardsColors.length]} ]}>
+          <View style={[styles.row,  {backgroundColor: REWARDS_COLORS[index % REWARDS_COLORS.length]}, {borderColor: REWARDS_COLORS[index % REWARDS_COLORS.length]} ]}>
             <Text style={styles.cell}>{item.name}</Text>
 
             {/* toLocaleString() formats applicable numbers with commas */}
@@ -156,9 +140,6 @@ const App: React.FC = () => {
     </View>
   );
 };
-
-// the colors of each reward system in alphabetized order
-const rewardsColors = ['#20A6F5', '#FCAD27', '#1EC5F4', '#34F3D5', '#EE794F', '#A484E1', '#199BD8', '#6DB9D6'];
 
 // contains all of the styling for the visual elements
 const styles = StyleSheet.create({
